@@ -6,10 +6,34 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import Button from "@material-ui/core/Button";
 import Input from '@mui/material/Input';
+import { v4 as uuidv4 } from 'uuid';
+const axios = require('axios');
 
-export default function WorkoutCreation( handleAddWorkout, open, handleToClose, handleClickToOpen , workoutNameRef) {
-    //const [open, setOpen] = useState(false);
-    //const workoutNameRef = useRef()
+export default function WorkoutCreation() {
+    const [workouts, setWorkouts] = useState([])
+    const [open, setOpen] = useState(false);
+    const workoutNameRef = useRef()
+
+
+    const handleClickToOpen = () => {
+        setOpen(true);
+    };
+  
+    const handleToClose = () => {
+      setOpen(false);
+    };
+
+
+
+    function handleAddWorkout(e){//e = event prop ie onClick
+        const name = workoutNameRef.current.value
+        console.log(name)
+          if(name === '') return
+          setWorkouts(prevWorkouts => {
+            return[...prevWorkouts, {id:uuidv4(), name: name, complete:false}]
+        })
+        setOpen(false);
+    }
 
 
     return (

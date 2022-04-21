@@ -7,50 +7,34 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import Button from "@material-ui/core/Button";
 import Input from '@mui/material/Input';
-import { v4 as uuidv4 } from 'uuid';
+
 import WorkoutCreation from "./WorkoutCreation";
 //import { TextField } from "@material-ui/core";
 
 function App() {
-  const [workouts, setWorkouts] = useState([])
-  const [open, setOpen] = useState(false);
-  const workoutNameRef = useRef()
+  
+  //const [open, setOpen] = useState(false);
+  
 
   
-  const handleClickToOpen = () => {
-      setOpen(true);
-  };
+  
 
-  const handleToClose = () => {
-    setOpen(false);
-  };
-
-  function toggleWorkout(id){
-    const newWorkouts = [...workouts]
-    const workout = newWorkouts.find(workout => workout.id === id)
-    workout.complete = !workout.complete
-    setWorkouts(newWorkouts) 
-  }
+  // function toggleWorkout(id){
+  //   const newWorkouts = [...workouts]
+  //   const workout = newWorkouts.find(workout => workout.id === id)
+  //   workout.complete = !workout.complete
+  //   setWorkouts(newWorkouts) 
+  // }
 
 
-  function handleAddWorkout(e){//e = event prop ie onClick
-    const name = workoutNameRef.current.value
-    console.log(name)
-      if(name === '') return
-      setWorkouts(prevWorkouts => {
-        return[...prevWorkouts, {id:uuidv4(), name: name, complete:false}]
-    })
-    setOpen(false);
-  }
-
+  
 
   return(
     <>
       <h1>WorkoutAgenda</h1>
       <h2>Insert Date here</h2>
-      <WorkoutAgenda workouts={workouts} toggleWorkout={toggleWorkout}/>
-      <WorkoutCreation handleAddWorkout={handleAddWorkout} open={open} handleToClose={handleToClose} 
-        handleClickToOpen={handleClickToOpen} workoutNameRef={workoutNameRef}/>
+      {/* <WorkoutAgenda workouts={workouts} toggleWorkout={toggleWorkout}/> */}
+      <WorkoutCreation />
     </>
   )
 }
